@@ -3,9 +3,10 @@ import prisma from "../lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { NoItems } from "../components/NoItems";
 import { ListingCard } from "../components/ListingsCard";
-import { it } from "node:test";
+import { unstable_noStore as noStore} from "next/cache";
 
 async function getData(userId: string) {
+  noStore();
   const data = await prisma.favorite.findMany({
     where: {
       userId: userId,
