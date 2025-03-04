@@ -7,7 +7,10 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
 import { cn } from "@/lib/utils";
 
+export const experimental_ppr = false
+
 export function ItemsFilter() {
+    
     const searchParams = useSearchParams()
     const search =  searchParams.get("filter") 
     const pathname = usePathname()

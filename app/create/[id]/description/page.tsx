@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { SelectLabel } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
-export default async function DescriptionPage({params}: {params: {id: string};}) {
+export default async function DescriptionPage({params}) {
     const { id } = await params
     
     return (

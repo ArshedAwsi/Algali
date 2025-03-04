@@ -45,8 +45,10 @@ async function getData(homeId: string) {
     return data
 }
 
-export default async function HomeRoute({params,}: {params: {id: string}}) {
-    const data = await getData(params.id)
+
+export default async function HomeRoute({params,}) {
+    const { id } = await params
+    const data = await getData(id)
     const {getCountryByValue} = useCountries()
     const country = getCountryByValue(data?.city as string)
     const {getUser} = getKindeServerSession()
@@ -92,9 +94,10 @@ export default async function HomeRoute({params,}: {params: {id: string}}) {
                     <Separator className="my-7"/>
 
                     <HomeMap locationValue={country?.value as string}/>
+                
                 </div>
                 <form action={createReservation}>
-                    <input type="hidden" name="homeId" value={params.id}/>
+                    <input type="hidden" name="homeId" value={id}/>
                     <input type="hidden" name="userId" value={user?.id}/>
                 <SelectCalander reservation={data?.Reservation}/>
 

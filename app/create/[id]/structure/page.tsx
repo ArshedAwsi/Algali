@@ -3,7 +3,7 @@ import CreationBottomBar from "@/app/components/CreationBottomBar";
 import { SelectCategory } from "@/app/components/SelectedCategory";
 
 
-export default async function StructureRoute({params}: {params: {id: string}}) {
+export default async function StructureRoute({params}) {
     const { id } = await params
     return(
         <>

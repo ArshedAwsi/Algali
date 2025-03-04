@@ -19,17 +19,17 @@ async function getData({searchParams, userId}:
  })
  { 
   noStore();
-
+  const {filter, city, guest, room, bathroom} = await searchParams ?? {};
   const data = await prisma.home.findMany({
     where: {
       addedCategory: true,
       addedLocation: true,
       addedDescription: true,
-      categoryName: searchParams?.filter ?? undefined,
-      city: searchParams?.city ?? undefined,
-      guests: searchParams?.guest ?? undefined,
-      bedrooms: searchParams?.room ?? undefined, 
-      bathrooms: searchParams?.bathroom ?? undefined,
+      categoryName: filter ?? undefined,
+      city: city ?? undefined,
+      guests: guest ?? undefined,
+      bedrooms: room ?? undefined, 
+      bathrooms: bathroom ?? undefined,
     },
     select: {
       photo: true,
@@ -61,9 +61,13 @@ export default  function Home({
   return (
     <>
       <div className="container mx-auto px-5 lg:px-10">
+       <Suspense>
+        
         <ItemsFilter />
 
-        <Suspense key={searchParams?.filter} fallback={<SkeletionLoading/>}>
+       </Suspense>
+        
+        <Suspense  fallback={<SkeletionLoading/>}>
            <ShowItems searchParams={searchParams} />
         </Suspense>
        

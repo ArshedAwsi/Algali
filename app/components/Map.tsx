@@ -13,6 +13,7 @@ const ICON = icon  ({
 export default function Map({locationValue}: {locationValue: string}) {
     const {getCountryByValue} = useCountries()
     const latLang = getCountryByValue(locationValue)?.latLang
+    if (!window) return null
     return (
         <MapContainer scrollWheelZoom={false} className="h-[50vh] rounded-lg relative z-0"
         center={latLang ?? [52.505, 0.09]}
